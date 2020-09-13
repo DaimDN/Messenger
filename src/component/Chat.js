@@ -19,7 +19,7 @@ export default class Chat extends Component {
      
             let input = prompt("Please Enter you Auth Code");
         var data = {"code": input}
-        axios.post('http://localhost:4001/verify', data).then((Response)=>{
+        axios.post('https://messengerback.herokuapp.com/verify', data).then((Response)=>{
             console.log(Response.data)
         this.setState({
             isAuth: Response.data.isAuth,
@@ -28,7 +28,7 @@ export default class Chat extends Component {
         })
 
         }).catch((err)=>{console.log(err)});
-        var url = "http://localhost:4001/messages";
+        var url = "https://messengerback.herokuapp.com/messages";
         axios.get(url).then((Response)=>{
             this.setState({
                 message: Response.data
@@ -45,14 +45,14 @@ export default class Chat extends Component {
         var name = this.state.name;
         
         var pairedData = {name: name, Key: Key, message : message, authkey : this.state.authenticatedKey};
-        var posturl = "http://localhost:4001/addmessage";
+        var posturl = "https://messengerback.herokuapp.com/addmessage";
         axios.post(posturl, pairedData).then((Response)=>{console.log(Response)}).catch((err)=>{console.log(err)});
         
         
 
         event.preventDefault();
         this.message.value = "";
-        var url = "http://localhost:4001/messages";
+        var url = "https://messengerback.herokuapp.com/messages";
         axios.get(url).then((Response)=>{
             this.setState({
                 message: Response.data
@@ -94,13 +94,15 @@ export default class Chat extends Component {
                     <div style={{  height: "400px", overflowY: 'scroll', bottom: '0'}}>
 
                     {this.state.message.map((list)=>{
-                        return  <div className="messagecontainer text-white bg-primary">
+                        return <div> <div className={[list.name +"\t" + "messagecontainer text-white bg-primary"]} >
                         <p style={{fontSize: '20px', lineHeight: '0'}}>{list.name}</p>
                     
                        <p style={{fontSize: '14px'}}>{list.message[0]} </p>
                         <br/>
+
+                     
                        
-                    </div>
+                    </div></div>
                     })}
                     
                    </div>

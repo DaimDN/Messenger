@@ -31,7 +31,7 @@ export default class Intro extends Component {
 
             console.log(setdata);
 
-            var posturl = "http://localhost:4001/user";
+            var posturl = "https://messengerback.herokuapp.com/user";
             axios.post(posturl, setdata).then((Response)=>{console.log(Response)}).catch((err)=>{console.log(err)});
 
             alert("Dear " + name + " , Your code is " + code);
