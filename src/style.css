@@ -1,0 +1,9 @@
+.messagecontainer{
+    background-color: brown;
+    border-radius: 100px 200px 10px 200px;
+    margin-top: 20px;
+    width: 80%;
+    margin-left: 10%;
+    padding: 2% 10%;
+    
+}
